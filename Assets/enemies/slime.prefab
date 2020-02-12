@@ -140,10 +140,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671149497aceef443b8a88fbf0c2b23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObjectCollision:
+    serializedVersion: 2
+    m_Bits: 1792
   rb2d: {fileID: 0}
   bc2d: {fileID: 0}
+  trnsfrm: {fileID: 0}
+  width: 0
   speed: 1
   ledgeWalkoff: 0
+  right: 1
 --- !u!50 &50269977813760520
 Rigidbody2D:
   serializedVersion: 4
@@ -152,7 +158,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7639565023625332514}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

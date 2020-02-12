@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour {
     float horizontalMove = 0f;
     private Rigidbody2D rb2d;
     private BoxCollider2D bc2d;
+
+    public float knockbackSide = 4f;
+    public float knockbackUp = 7f;
     // Start is called before the first frame update
     void Start() {
         rb2d = GetComponent<Rigidbody2D>();
@@ -27,16 +30,23 @@ public class PlayerController : MonoBehaviour {
         }
 
         Vector3 characterScale = transform.localScale;
-        if(Input.GetAxis("Horizontal") < 0) {
+        if(Input.GetAxis("Horizontal") < 0 && knockbackCount <= 0) {
             characterScale.x = -1;
+            knockbackSide = 4f;
+            
         }
-        if (Input.GetAxis("Horizontal") > 0) {
+        if (Input.GetAxis("Horizontal") > 0 && knockbackCount <= 0) {
             characterScale.x = 1;
+            knockbackSide = -4f;
         }
         transform.localScale = characterScale;
+
         if (knockbackCount <= 0) Movement();
-        if (knockbackCount > 0) {
-            rb2d.velocity = new Vector2(+8, +10);
+        if (knockbackCount >= 0.2) {
+            rb2d.velocity = new Vector2(+knockbackSide, +knockbackUp);
+            knockbackCount -= Time.deltaTime;
+        }
+        if(knockbackCount < 0.2 && knockbackCount > 0) {
             knockbackCount -= Time.deltaTime;
         }
 
@@ -58,11 +68,12 @@ public class PlayerController : MonoBehaviour {
             foreach (ContactPoint2D point in collision.contacts) {
                 Debug.DrawLine(point.point, point.point + point.normal, Color.red, 10);
             }
-            Debug.Log(enemyTop.collider);
+            //Debug.Log(enemyTop.collider);
 
 
             if (enemyTop.collider != null) {
-                Destroy(enemy.gameObject);
+                //Destroy(enemy.gameObject);
+                enemy.Kill();
                 if (Input.GetKey(KeyCode.Space)) {
                     rb2d.velocity = new Vector2(0, +15);
                 }
@@ -72,7 +83,7 @@ public class PlayerController : MonoBehaviour {
                 
             } else {
                 Debug.Log("ouch");
-                knockbackCount = 0.1;
+                knockbackCount = 0.3;
             }
             
             
