@@ -9,11 +9,14 @@ public class EnemyLogic : MonoBehaviour{
     public Transform trnsfrm;
     public Animator animator;
     public float width;
+    public bool alive = true;
     public void Start() {
+
         trnsfrm = GetComponent<Transform>();
         width = GetComponent<SpriteRenderer>().bounds.extents.x;
         rb2d = GetComponent<Rigidbody2D>();
         bc2d = GetComponent<BoxCollider2D>();
+        animator.GetComponent<Animator>();
     }
     /*public void OnCollisionEnter2D(Collision2D collision) {
         RaycastHit2D enemycollision = Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.zero, .1f, ObjectCollision);

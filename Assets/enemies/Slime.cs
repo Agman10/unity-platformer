@@ -6,9 +6,10 @@ public class Slime : EnemyLogic{
     public float speed;
     public bool ledgeWalkoff = false;
     public bool right = true;
+    
 
     private void Update() {
-        Movement();
+        if (alive) Movement();
 
 
         Vector2 lineCastPosRight = trnsfrm.position + trnsfrm.right * width;
@@ -31,7 +32,6 @@ public class Slime : EnemyLogic{
 
     public void OnCollisionEnter2D(Collision2D collision) {
 
-
     }
 
     private void Movement() {
@@ -46,8 +46,13 @@ public class Slime : EnemyLogic{
     }
 
     public override void Kill() {
+        alive = false;
         //animator.SetBool("dead", true);
-        Destroy(gameObject);
+        animator.SetTrigger("death");
+        speed = 0f;
+        
+        Destroy(gameObject, 0.48f);
+        //Destroy(gameObject, 4f);
     }
     protected override void OnHit() {
 

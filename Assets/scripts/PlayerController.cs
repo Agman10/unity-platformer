@@ -85,8 +85,7 @@ public class PlayerController : MonoBehaviour {
                 Debug.Log("ouch");
                 knockbackCount = 0.3;
             }
-            
-            
+
         }
     }
 
@@ -106,11 +105,11 @@ public class PlayerController : MonoBehaviour {
 
     private void Movement() {
         
-        if (Input.GetKey(KeyCode.LeftArrow)) {
+        if (Input.GetKey(KeyCode.LeftArrow) && Input.GetAxis("Horizontal") < 0) {
             rb2d.velocity = new Vector2(-moveSpeed, rb2d.velocity.y);
         }
         else {
-            if (Input.GetKey(KeyCode.RightArrow)) {
+            if (Input.GetKey(KeyCode.RightArrow) && Input.GetAxis("Horizontal") > 0) {
                 rb2d.velocity = new Vector2(+moveSpeed, rb2d.velocity.y);
             }
             else {

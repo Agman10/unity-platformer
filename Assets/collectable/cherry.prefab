@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6625204374231578171}
   - component: {fileID: 4540613183543508505}
   - component: {fileID: 7966235651906966274}
+  - component: {fileID: 3035765720980221993}
   m_Layer: 0
   m_Name: cherry
   m_TagString: collectable
@@ -119,3 +120,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2692f01a0e0548d4b937946ae0167c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &3035765720980221993
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5866012134182306081}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3ec90d8860ae56248965e3bf2baf2e98, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
