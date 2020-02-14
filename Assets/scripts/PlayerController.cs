@@ -10,10 +10,12 @@ public class PlayerController : MonoBehaviour {
     public float moveSpeed = 1f;
     public float jumpVelocity = 1f;
     public double knockbackCount = 0f;
+    public float maxVelocity = 6f;
 
     float horizontalMove = 0f;
     private Rigidbody2D rb2d;
     private BoxCollider2D bc2d;
+    //public Transform trnsfrm;
 
     public float knockbackSide = 4f;
     public float knockbackUp = 7f;
@@ -21,13 +23,17 @@ public class PlayerController : MonoBehaviour {
     void Start() {
         rb2d = GetComponent<Rigidbody2D>();
         bc2d = GetComponent<BoxCollider2D>();
+        //trnsfrm = GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update() {
+        
         if (rb2d.velocity.y == 0 && Input.GetKeyDown(KeyCode.Space)) {
             rb2d.velocity = Vector2.up * jumpVelocity;
         }
+
+        Vector2.ClampMagnitude(rb2d.velocity, maxVelocity);
 
         Vector3 characterScale = transform.localScale;
         if(Input.GetAxis("Horizontal") < 0 && knockbackCount <= 0) {
@@ -55,6 +61,7 @@ public class PlayerController : MonoBehaviour {
         //Debug.Log(horizontalMove);
         animator.SetFloat("jumping", Mathf.Abs(rb2d.velocity.y));
         //IsGrounded();
+
         
     }
 
@@ -119,5 +126,6 @@ public class PlayerController : MonoBehaviour {
                 rb2d.velocity = new Vector2(0, rb2d.velocity.y);
             }*/
         }
+        
     }
 }
