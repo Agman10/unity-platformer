@@ -72,6 +72,8 @@
     <Compile Include="Assets\HalfPlatforms.cs" />
     <Compile Include="Assets\scripts\PlayerController.cs" />
     <Compile Include="Assets\teleport\Teleporter.cs" />
+    <Compile Include="Assets\teleport\TeleportLeft.cs" />
+    <Compile Include="Assets\teleport\TeleportRight.cs" />
     <Compile Include="Assets\teleport\TeleportUp.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/august.moller/platformer/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

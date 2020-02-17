@@ -7,10 +7,11 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private LayerMask enemyCollision;
     public Animator animator;
     //public float animator = 1f;
-    public float moveSpeed = 1f;
-    public float jumpVelocity = 1f;
+    public float moveSpeed = 7f;
+    public float jumpVelocity = 15f;
     public double knockbackCount = 0f;
-    public float maxVelocity = 6f;
+    public float maxVelocity = 15f;
+    public float health = 2f;
 
     float horizontalMove = 0f;
     private Rigidbody2D rb2d;
@@ -33,21 +34,25 @@ public class PlayerController : MonoBehaviour {
             rb2d.velocity = Vector2.up * jumpVelocity;
         }
 
-        Vector2.ClampMagnitude(rb2d.velocity, maxVelocity);
+        //Vector2.ClampMagnitude(rb2d.velocity, maxVelocity);
+        //CapVelocity();
 
         Vector3 characterScale = transform.localScale;
         if(Input.GetAxis("Horizontal") < 0 && knockbackCount <= 0) {
             characterScale.x = -1;
-            knockbackSide = 4f;
+            //knockbackSide = 4f;
             
         }
         if (Input.GetAxis("Horizontal") > 0 && knockbackCount <= 0) {
             characterScale.x = 1;
-            knockbackSide = -4f;
+            //knockbackSide = -4f;
         }
         transform.localScale = characterScale;
 
-        if (knockbackCount <= 0) Movement();
+        if (knockbackCount <= 0) {
+            CapVelocity();
+            Movement();
+        }
         if (knockbackCount >= 0.2) {
             rb2d.velocity = new Vector2(+knockbackSide, +knockbackUp);
             knockbackCount -= Time.deltaTime;
@@ -90,7 +95,15 @@ public class PlayerController : MonoBehaviour {
                 
             } else {
                 Debug.Log("ouch");
+                health--;
                 knockbackCount = 0.3;
+                if(enemy.transform.position.x < transform.position.x) {
+                    knockbackSide = 4f;
+                }
+                else if (enemy.transform.position.x > transform.position.x) {
+                    knockbackSide = -4f;
+                }
+                //transform.position = new Vector2(rb2d.position.x, 8);
             }
 
         }
@@ -127,5 +140,10 @@ public class PlayerController : MonoBehaviour {
             }*/
         }
         
+    }
+
+    public void CapVelocity() {
+        float cappedYVelocity = Mathf.Min(Mathf.Abs(rb2d.velocity.y), maxVelocity) * Mathf.Sign(rb2d.velocity.y);
+        rb2d.velocity = new Vector2(moveSpeed, cappedYVelocity);
     }
 }
