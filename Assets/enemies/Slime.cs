@@ -14,10 +14,9 @@ public class Slime : EnemyLogic{
 
         Vector2 lineCastPosRight = trnsfrm.position + trnsfrm.right * width;
         Vector2 lineCastPosLeft = trnsfrm.position - trnsfrm.right * width;
+
         Debug.DrawLine(lineCastPosRight, lineCastPosRight + Vector2.down, Color.red);
         Debug.DrawLine(lineCastPosLeft, lineCastPosLeft + Vector2.down, Color.blue);
-
-        //Debug.Log(lineCastPosRight);
 
         bool isGroundedRight = Physics2D.Linecast(lineCastPosRight, lineCastPosRight + Vector2.down, ObjectCollision);
         bool isGroundedLeft = Physics2D.Linecast(lineCastPosLeft, lineCastPosLeft + Vector2.down, ObjectCollision);
@@ -33,6 +32,13 @@ public class Slime : EnemyLogic{
     public void OnCollisionEnter2D(Collision2D collision) {
 
     }
+
+    /*private void OnTriggerEnter2D(Collider2D collision) {
+        //EnemyLogic enemy = collision.collider.GetComponent<EnemyLogic>();
+        if (collision.tag == "Player") {
+            Kill();
+        }
+    }*/
 
     private void Movement() {
         if (right) {

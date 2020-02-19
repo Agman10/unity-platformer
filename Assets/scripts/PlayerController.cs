@@ -70,20 +70,27 @@ public class PlayerController : MonoBehaviour {
         
     }
 
-
+    /*private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.tag == "enemy") {
+                if (Input.GetKey(KeyCode.Space)) {
+                    rb2d.velocity = new Vector2(0, +15);
+                }
+                else {
+                    rb2d.velocity = new Vector2(0, +7);
+                }
+        }
+    }*/
     private void OnCollisionEnter2D(Collision2D collision) {
         
         EnemyLogic enemy = collision.collider.GetComponent<EnemyLogic>();
         if(enemy != null) {
-            RaycastHit2D enemyTop = Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.down, .1f, enemyCollision);
+            RaycastHit2D enemyTop = Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.down, .5f, enemyCollision);
 
             foreach (ContactPoint2D point in collision.contacts) {
                 Debug.DrawLine(point.point, point.point + point.normal, Color.red, 10);
             }
-            //Debug.Log(enemyTop.collider);
 
-
-            if (enemyTop.collider != null) {
+            if (enemyTop.collider != null && rb2d.velocity.y < 0) {
                 //Destroy(enemy.gameObject);
                 enemy.Kill();
                 if (Input.GetKey(KeyCode.Space)) {
@@ -108,8 +115,6 @@ public class PlayerController : MonoBehaviour {
 
         }
     }
-
-
 
     private bool IsGrounded() {
         
