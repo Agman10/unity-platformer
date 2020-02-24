@@ -69,6 +69,7 @@
     <Compile Include="Assets\collectable\CollectableLogic.cs" />
     <Compile Include="Assets\enemies\EnemyLogic.cs" />
     <Compile Include="Assets\enemies\Slime.cs" />
+    <Compile Include="Assets\FlyEnemy.cs" />
     <Compile Include="Assets\HalfPlatforms.cs" />
     <Compile Include="Assets\scripts\PlayerController.cs" />
     <Compile Include="Assets\teleport\Teleporter.cs" />
