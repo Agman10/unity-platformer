@@ -40,4 +40,9 @@ public class FlyEnemy : EnemyLogic {
             up = true;
         }
     }
+    public override void Kill()
+    {
+        Destroy(gameObject);
+        //Destroy(gameObject, 4f);
+    }
 }

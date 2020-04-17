@@ -130,11 +130,11 @@ public class PlayerController : MonoBehaviour {
 
     private void Movement() {
         
-        if (Input.GetKey(KeyCode.LeftArrow) && Input.GetAxis("Horizontal") < 0) {
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) && Input.GetAxis("Horizontal") < 0) {
             rb2d.velocity = new Vector2(-moveSpeed, rb2d.velocity.y);
         }
         else {
-            if (Input.GetKey(KeyCode.RightArrow) && Input.GetAxis("Horizontal") > 0) {
+            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) && Input.GetAxis("Horizontal") > 0) {
                 rb2d.velocity = new Vector2(+moveSpeed, rb2d.velocity.y);
             }
             else {
