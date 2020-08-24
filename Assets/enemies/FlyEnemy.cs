@@ -26,7 +26,7 @@ public class FlyEnemy : EnemyLogic {
             speed = -1f;
         }
         rb2d.velocity = new Vector2(rb2d.velocity.x, +speed);
-        Debug.Log("moving");
+        //Debug.Log("moving");
     }
 
     private void ChangeDir()

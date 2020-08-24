@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
     public double knockbackCount = 0f;
     public float maxVelocity = 15f;
     public float health = 2f;
+    public float lives = 3f;
 
     float horizontalMove = 0f;
     private Rigidbody2D rb2d;
@@ -61,6 +62,12 @@ public class PlayerController : MonoBehaviour {
             knockbackCount -= Time.deltaTime;
         }
 
+        if (health < 1) {
+            Debug.Log("ded");
+            lives--;
+            health = 2;
+        }
+            
         horizontalMove = Input.GetAxisRaw("Horizontal");
         animator.SetFloat("speed", Mathf.Abs(horizontalMove));
         //Debug.Log(horizontalMove);

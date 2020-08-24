@@ -11050,6 +11050,7 @@ MonoBehaviour:
   knockbackCount: 0
   maxVelocity: 15
   health: 2
+  lives: 3
   knockbackSide: 0
   knockbackUp: 7
 --- !u!212 &1167901614
